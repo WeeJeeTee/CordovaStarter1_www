@@ -2,11 +2,13 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "nl.wjt.eersteCordova"
-        version   = "0.0.1">
+        version   = "0.0.2">
     <name>Cordova EEN</name>
 
     <description>
-        Eerste Windows Phone app die x-platform is gemaakt met Cordova
+        Eerste Windows Phone app die x-platform is gemaakt met Cordova.
+		CRUD functionaliteit naar webapi geimplementeerd.	
+		26-10-2012 17:55		
     </description>
 
     <author href="http://wjt.nl" email="wjt@wjt.nl">
