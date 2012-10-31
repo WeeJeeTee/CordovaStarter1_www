@@ -532,54 +532,66 @@ a.twitter
     background: url("../Images/twitter.png") no-repeat;
 }
 
-    /* custom wjt
+/* custom wjt
         ----------------------------------------------------------*/
-    .tabel
-    {
-        display: table;
-        width: 90%;
-        border-collapse: collapse;
-        border-spacing: 1px;
-        empty-cells: show;
-        table-layout: fixed;
-        caption-side: bottom;
-    }
+.tabel
+{
+    display: table;
+    width: 98%;
+    border-collapse: collapse;
+    border-spacing: 1px;
+    empty-cells: show;
+    table-layout: fixed;
+    caption-side: bottom;
+}
 
-    .tabelrij
-    {
-        display: table-row;
-    }
+.titelrij
+{
+    font-weight: bold;
+    font-size: larger;
+}
 
-    .tabelcel
-    {
-        padding: 1px;
-        border: 1px solid #800000;
-        display: table-cell;
-    }
+.tabelrij
+{
+    display: table-row;
+}
 
-    .id
-    {
-        width: 5%;
-        text-align: right;
-    }
+.tabelcel
+{
+    padding: 1px;
+    border: 1px solid #800000;
+    display: table-cell;
+}
 
-    .name
-    {
-        width: 50%;
-        text-align: left;
-    }
+.id
+{
+    width: 10%;
+    text-align: right;
+}
 
-    .category
-    {
-        width: 30%;
-        text-align: left;
-    }
+.category
+{
+    width: 25%;
+    text-align: left;
+}
 
-    .price
-    {
-        width: 10%;
-        text-align: right;
-    }
+.name
+{
+    width: 35%;
+    text-align: left;
+}
+
+.price
+{
+    width: 15%;
+    text-align: right;
+}
+
+.editicon
+{
+    width: 5%;
+    text-align: center;
+}
 
 /********************
 *   Mobile Styles   *
@@ -588,7 +600,7 @@ a.twitter
 {
 
     /* header
-        ----------------------------------------------------------*/
+            ----------------------------------------------------------*/
     header .float-left, header .float-right
     {
         float: none;
@@ -658,7 +670,7 @@ a.twitter
 
 
     /* main layout
-        ----------------------------------------------------------*/
+            ----------------------------------------------------------*/
     .main-content, .featured + .main-content
     {
         background-position: 10px 0;
@@ -744,7 +756,7 @@ a.twitter
     }
 
     /* footer
-        ----------------------------------------------------------*/
+            ----------------------------------------------------------*/
     footer .float-left, footer .float-right
     {
         float: none;
