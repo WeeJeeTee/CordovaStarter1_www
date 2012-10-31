@@ -6,11 +6,17 @@
     <script src="jquery-1.7.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
 
-        var url = "http://192.168.1.14:53529/";
+        var url = "http://192.168.1.12:53529/";
         $.support.cors = true; // force cross-site scripting (as of jQuery 1.5)
+        var id;
 
         $(document).ready(function () {
-            // findAll();
+            var urlparameters = window.location.search;
+            id = urlparameters.replace("?id=", "");
+            $("#message").append(id);
+            if (id > 0) {
+                findId();
+            }
         });
 
         function list(data) {
@@ -45,11 +51,12 @@
         }
 
         function findId() {
-            var id = $('#prodId').val();
             $.getJSON(url + "api/products/" + id,
                 function (data) {
-                    var str = data.Name + ': $' + data.Price;
-                    $('#product').text(str);
+                    $("#prodNameNew").val(data.Name);
+                    $("#prodCategoryNew").val(data.Category);
+                    $("#prodPriceNew").val(data.Price);
+                    $("#idLabel").val(data.Id);
                 })
             .fail(
                 function (jqXHR, textStatus, err) {
@@ -73,15 +80,24 @@
             var nameNew = $('#prodNameNew').val();
             var categoryNew = $('#prodCategoryNew').val();
             var priceNew = $('#prodPriceNew').val();
-            $.post(url + "api/products/",
-                { Name: nameNew, Category: categoryNew, Price: priceNew }, function (data) { window.location='index.html' });
-            //$.success(function (data) {
-            //    list();
-            //});
-//            $.fail(
-//                function (jqXHR, textStatus, err) {
-//                    $('#product').text('Error: ' + err);
-//                });
+            var idLabel = $('#idLabel').val();
+            if (idLabel == '') {
+                $.post(url + "api/products/",
+                { Name: nameNew, Category: categoryNew, Price: priceNew },
+                function (data) {
+                    window.location = 'index.html';
+                });
+            }
+            else {
+                $.ajax({
+                    url: url + "api/products/" + idLabel,
+                    data: { Id: idLabel, Name: nameNew, Category: categoryNew, Price: priceNew },
+                    type: "PUT",
+                    success: function (data) {
+                        window.location = 'index.html';
+                    }
+                });
+            }
         }
 
         function remove() {
@@ -93,34 +109,17 @@
                     list();
                 }
             });
-
-//            $.fail(
-//                function (jqXHR, textStatus, err) {
-//                    $('#product').text('Error: ' + err);
-//                });
         }
 
     </script>
 </head>
 <body id="body">
     <div class="main-content">
-        <!--   <h1>
-                mijn producten</h1>
-            <ul id="products" />
-        </div>
-        <div>
-            <input type="button" value="Toon alle" onclick="findAll();" />
-            <br />
-            <label for="prodId">
-                ID:</label>
-            <input type="text" id="prodId" size="5" />
-            <input type="button" value="filter id" onclick="findId();" />
-            <br />
-            <label for="category">
-                Category:</label>
-            <input type="text" id="category" size="5" />
-            <input type="button" value="filter categorie" onclick="findCategory();" />
-            <p id="product" />-->
+        <label>
+            Id:</label>
+        <input type="text" id="idLabel" disabled="disabled" />
+        <br />
+        <br />
         <label for="prodNameNew">
             Name:</label>
         <input type="text" id="prodNameNew" />
@@ -138,27 +137,8 @@
         <br />
         <input type="button" value="Cancel" onclick="window.location='index.html';" />
         <input type="button" value="Save" onclick="save();" />
-        <!-- <br />
-            <label for="deleteProdId">
-                ID:</label>
-            <input type="text" id="deleteProdId" size="5" />
-            <input type="button" value="Delete" onclick="remove()" />
-            <br />
-            <br />
-            <input type="button" value="Nieuw product" id="nieuwproduct" onclick="window.location='NieuwProduct.html'"/>
-            <p>
-            </p>
-        </div>-->
-        <!--<div>
-            <label for="prodId">
-                ID:</label>
-            <input type="text" id="prodId" size="5" />
-            <input type="button" value="Search" onclick="find();" />
-            <p id="product" />
-            <input type="text" id="prodIdNew" />
-            <input type="text" id="prodNameNew" />
-            <input type="text" id="prodPriceNew" />
-            <input type="button" value="Save" onclick="save();" />-->
+    </div>
+    <div id="message">
     </div>
 </body>
 </html>

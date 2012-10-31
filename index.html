@@ -6,7 +6,7 @@
     <script src="jquery-1.7.1.min.js" type="text/javascript"></script>
     <script type="text/javascript">
 
-        var url = "http://192.168.1.13:53529/";
+        var url = "http://192.168.1.12:53529/";
         $.support.cors = true; // force cross-site scripting (as of jQuery 1.5)
 
         $(document).ready(function () {
@@ -14,35 +14,35 @@
         });
 
         function list(data) {
-            //var img = $('<img>'); //Equivalent: $(document.createElement('img'))
-            var img = $('<img />').attr({ 'src': 'EditInformationHS.png', 'alt': 'edit' }); //.appendTo($('#YourDiv'));
-
-
             $('#products').empty();
             $('#products').append(
                 $('<div>').attr('class', 'tabelrij titelrij').append(
                 $('<div>').append('Id').attr('class', 'tabelcel titelrij id')).append(
                 $('<div>').append('Category').attr('class', 'tabelcel titelrij category')).append(
                 $('<div>').append('Name').attr('class', 'tabelcel titelrij name')).append(
-                $('<div>').append('Price').attr('class', 'tabelcel titelrij price')));
+                $('<div>').append('Price').attr('class', 'tabelcel titelrij price')).append(
+                $('<div>').attr('class', 'tabelcel titelrij editicon')
+                ));
             $.each(data, function (key, val) {
                 $('#products').append(
                         $('<div>').attr('class', 'tabelrij').append(
                         $('<div>').append(val.Id).attr('class', 'tabelcel id')).append(
                         $('<div>').append(val.Category).attr('class', 'tabelcel category')).append(
                         $('<div>').append(val.Name).attr('class', 'tabelcel name')).append(
-                        $('<div>').append(val.Price).attr('class', 'tabelcel price'))).attr('class', 'tabel');
+                        $('<div>').append(val.Price).wrap("<a href='ddd' />").attr('class', 'tabelcel price')).append(
+                        $('<div>').append($('<a />').attr('href', 'NieuwProduct.html?id=' + val.Id).append($('<img />').attr({ id: 'editIcon' + val.Id, 'src': 'EditInformationHS.png', 'alt': 'edit' }))).attr('class', 'tabelcel titelrij editicon')
+                        )).attr('class', 'tabel');
             });
         }
 
         function findAll() {
-            $.getJSON(url + "api/products/",
+            $.getJSON(url + "api/products/",{},
                 function (data) {
                     list(data);
                 })
             .fail(
                 function (jqXHR, textStatus, err) {
-                    $('#product').text('Error: ' + err);
+                    $('#error').text('findAll Error: ' + jqXHR.responseText + '    ' + err);
                 });
         }
 
@@ -55,7 +55,7 @@
                 })
             .fail(
                 function (jqXHR, textStatus, err) {
-                    $('#product').text('Error: ' + err);
+                    $('#error').text('Error: ' + err);
                 });
         }
 
@@ -67,7 +67,7 @@
                 })
             .fail(
                 function (jqXHR, textStatus, err) {
-                    $('#product').text('Error: ' + err);
+                    $('#error').text('Error: ' + err);
                 });
         }
 
@@ -77,28 +77,26 @@
             var priceNew = $('#prodPriceNew').val();
             $.post(url + "api/products/",
                 { Name: nameNew, Category: categoryNew, Price: priceNew }, function (data) { list() });
-            //$.success(function (data) {
-            //    list();
-            //});
             $.fail(
                 function (jqXHR, textStatus, err) {
-                    $('#product').text('Error: ' + err);
+                    $('#error').text('Error: ' + err);
                 });
         }
 
         function remove() {
             var deleteProdId = $('#deleteProdId').val();
+            alert(deleteProdId);
             $.ajax({
                 url: url + "api/products/" + deleteProdId,
                 type: "DELETE",
                 success: function (data) {
-                    list();
+                    $("#error").text("verwijderd");
+                    findAll();
                 }
-            });
-
-            $.fail(
+            })
+            .fail(
                 function (jqXHR, textStatus, err) {
-                    $('#product').text('Error: ' + err);
+                    $('#error').text('remove Error: ' + err);
                 });
         }
 
@@ -124,17 +122,6 @@
             <input type="text" id="category" size="5" />
             <input type="button" value="filter categorie" onclick="findCategory();" />
             <p id="product" />
-            <!--<label for="prodNameNew">
-                Name:</label>
-            <input type="text" id="prodNameNew" />
-            <label for="prodCategoryNew">
-                Category:</label>
-            <input type="text" id="prodCategoryNew" />
-            <label for="prodPriceNew">
-                Price:</label>
-            <input type="text" id="prodPriceNew" />
-            <input type="button" value="Save" onclick="save();" />
-            <br />-->
             <label for="deleteProdId">
                 ID:</label>
             <input type="text" id="deleteProdId" size="5" />
@@ -145,17 +132,10 @@
             <p>
             </p>
         </div>
-        <!--<div>
-            <label for="prodId">
-                ID:</label>
-            <input type="text" id="prodId" size="5" />
-            <input type="button" value="Search" onclick="find();" />
-            <p id="product" />
-            <input type="text" id="prodIdNew" />
-            <input type="text" id="prodNameNew" />
-            <input type="text" id="prodPriceNew" />
-            <input type="button" value="Save" onclick="save();" />
-        </div>-->
+    </div>
+    <div>
+        <h1 id="error">
+        </h1>
     </div>
 </body>
 </html>
