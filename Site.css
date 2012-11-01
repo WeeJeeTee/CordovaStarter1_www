@@ -587,12 +587,23 @@ a.twitter
     text-align: right;
 }
 
-.editicon
+.actionicon
 {
-    width: 5%;
+    width: 2.5%;
     text-align: center;
 }
 
+.imageicon
+{
+    border-width: 0px;
+}
+.labeltekst
+{
+    width: 90px;
+    display: inline-block;
+    text-align: right;
+    padding-right: 10px;
+}
 /********************
 *   Mobile Styles   *
 ********************/
@@ -600,7 +611,7 @@ a.twitter
 {
 
     /* header
-            ----------------------------------------------------------*/
+                ----------------------------------------------------------*/
     header .float-left, header .float-right
     {
         float: none;
@@ -670,7 +681,7 @@ a.twitter
 
 
     /* main layout
-            ----------------------------------------------------------*/
+                ----------------------------------------------------------*/
     .main-content, .featured + .main-content
     {
         background-position: 10px 0;
@@ -756,7 +767,7 @@ a.twitter
     }
 
     /* footer
-            ----------------------------------------------------------*/
+                ----------------------------------------------------------*/
     footer .float-left, footer .float-right
     {
         float: none;

@@ -7,15 +7,20 @@
     <script type="text/javascript">
 
         var url = "http://192.168.1.12:53529/";
+        var url = "http://localhost:53529/";
+        var url = "http://pareto116:53529/";
         $.support.cors = true; // force cross-site scripting (as of jQuery 1.5)
         var id;
 
         $(document).ready(function () {
             var urlparameters = window.location.search;
             id = urlparameters.replace("?id=", "");
-            $("#message").append(id);
+            //$("#message").append(id);
             if (id > 0) {
                 findId();
+            }
+            else {
+                $("#idDiv").remove();
             }
         });
 
@@ -115,26 +120,30 @@
 </head>
 <body id="body">
     <div class="main-content">
-        <label>
-            Id:</label>
-        <input type="text" id="idLabel" disabled="disabled" />
-        <br />
-        <br />
-        <label for="prodNameNew">
+        <div id="idDiv">
+            <label for="idLabel" class="label labeltekst">
+                Id:</label>
+            <input type="text" id="idLabel" disabled="disabled" />
+            <br />
+            <br />
+        </div>
+        <label for="prodNameNew" class="label labeltekst">
             Name:</label>
         <input type="text" id="prodNameNew" />
         <br />
         <br />
-        <label for="prodCategoryNew">
+        <label for="prodCategoryNew" class="label labeltekst">
             Category:</label>
         <input type="text" id="prodCategoryNew" />
         <br />
         <br />
-        <label for="prodPriceNew">
+        <label for="prodPriceNew" class="label labeltekst">
             Price:</label>
         <input type="text" id="prodPriceNew" />
         <br />
         <br />
+        <label class="label labeltekst">
+            &nbsp;</label>
         <input type="button" value="Cancel" onclick="window.location='index.html';" />
         <input type="button" value="Save" onclick="save();" />
     </div>

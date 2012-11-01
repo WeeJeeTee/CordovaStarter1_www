@@ -7,6 +7,8 @@
     <script type="text/javascript">
 
         var url = "http://192.168.1.12:53529/";
+        var url = "http://localhost:53529/";
+        var url = "http://pareto116:53529/";
         $.support.cors = true; // force cross-site scripting (as of jQuery 1.5)
 
         $(document).ready(function () {
@@ -14,6 +16,7 @@
         });
 
         function list(data) {
+            $('#message').empty();
             $('#products').empty();
             $('#products').append(
                 $('<div>').attr('class', 'tabelrij titelrij').append(
@@ -21,7 +24,8 @@
                 $('<div>').append('Category').attr('class', 'tabelcel titelrij category')).append(
                 $('<div>').append('Name').attr('class', 'tabelcel titelrij name')).append(
                 $('<div>').append('Price').attr('class', 'tabelcel titelrij price')).append(
-                $('<div>').attr('class', 'tabelcel titelrij editicon')
+                $('<div>').attr('class', 'tabelcel titelrij actionicon')).append(
+                $('<div>').attr('class', 'tabelcel titelrij actionicon')
                 ));
             $.each(data, function (key, val) {
                 $('#products').append(
@@ -30,19 +34,20 @@
                         $('<div>').append(val.Category).attr('class', 'tabelcel category')).append(
                         $('<div>').append(val.Name).attr('class', 'tabelcel name')).append(
                         $('<div>').append(val.Price).wrap("<a href='ddd' />").attr('class', 'tabelcel price')).append(
-                        $('<div>').append($('<a />').attr('href', 'NieuwProduct.html?id=' + val.Id).append($('<img />').attr({ id: 'editIcon' + val.Id, 'src': 'EditInformationHS.png', 'alt': 'edit' }))).attr('class', 'tabelcel titelrij editicon')
+                        $('<div>').append($('<a />').attr({ 'href': 'NieuwProduct.html?id=' + val.Id }).append($('<img />').attr({ id: 'editicon' + val.Id, 'src': 'EditInformationHS.png', 'alt': 'edit', 'title': 'edit', 'class': 'imageicon' }))).attr('class', 'tabelcel titelrij actionicon')).append(
+                        $('<div>').click(function () { remove(val.Id); }).append($('<img />').attr({ id: 'deleteicon' + val.Id, 'src': 'DeleteHS.png', 'alt': 'delete', 'title': 'delete', 'class': 'imageicon' })).attr('class', 'tabelcel titelrij actionicon')
                         )).attr('class', 'tabel');
             });
         }
 
         function findAll() {
-            $.getJSON(url + "api/products/",{},
+            $.getJSON(url + "api/products/", {},
                 function (data) {
                     list(data);
                 })
             .fail(
                 function (jqXHR, textStatus, err) {
-                    $('#error').text('findAll Error: ' + jqXHR.responseText + '    ' + err);
+                    $('#message').text('findAll Error: ' + jqXHR.responseText + '    ' + err);
                 });
         }
 
@@ -51,11 +56,11 @@
             $.getJSON(url + "api/products/" + id,
                 function (data) {
                     var str = data.Name + ': $' + data.Price;
-                    $('#product').text(str);
+                    $('#message').text(str);
                 })
             .fail(
                 function (jqXHR, textStatus, err) {
-                    $('#error').text('Error: ' + err);
+                    $('#message').text('Error: ' + err);
                 });
         }
 
@@ -67,7 +72,7 @@
                 })
             .fail(
                 function (jqXHR, textStatus, err) {
-                    $('#error').text('Error: ' + err);
+                    $('#message').text('Error: ' + err);
                 });
         }
 
@@ -79,24 +84,23 @@
                 { Name: nameNew, Category: categoryNew, Price: priceNew }, function (data) { list() });
             $.fail(
                 function (jqXHR, textStatus, err) {
-                    $('#error').text('Error: ' + err);
+                    $('#message').text('Error: ' + err);
                 });
         }
 
-        function remove() {
-            var deleteProdId = $('#deleteProdId').val();
-            alert(deleteProdId);
+        function remove(deleteProdId) {
+            //var deleteProdId = $('#deleteProdId').val();
             $.ajax({
                 url: url + "api/products/" + deleteProdId,
                 type: "DELETE",
                 success: function (data) {
-                    $("#error").text("verwijderd");
+                    $("#message").text(deleteProdId + " verwijderd");
                     findAll();
                 }
             })
             .fail(
                 function (jqXHR, textStatus, err) {
-                    $('#error').text('remove Error: ' + err);
+                    $('#message').text('remove Error: ' + err);
                 });
         }
 
@@ -110,32 +114,38 @@
             <ul id="products" />
         </div>
         <div>
+            <label class="label labeltekst">
+                &nbsp;</label>
             <input type="button" value="Toon alle" onclick="findAll();" />
             <br />
-            <label for="prodId">
+            <br />
+            <label for="prodId" class="label labeltekst">
                 ID:</label>
             <input type="text" id="prodId" size="5" />
-            <input type="button" value="filter id" onclick="findId();" />
+            <input type="button" value="Filter id" onclick="findId();" />
             <br />
-            <label for="category">
+            <br />
+            <label for="category" class="label labeltekst">
                 Category:</label>
             <input type="text" id="category" size="5" />
-            <input type="button" value="filter categorie" onclick="findCategory();" />
-            <p id="product" />
-            <label for="deleteProdId">
+            <input type="button" value="Filter categorie" onclick="findCategory();" /><!--
+            <label for="deleteProdId" class="label labeltekst">
                 ID:</label>
             <input type="text" id="deleteProdId" size="5" />
-            <input type="button" value="Delete" onclick="remove()" />
+            <input type="button" value="Delete" onclick="remove()" />-->
             <br />
             <br />
+            <label class="label labeltekst">
+                &nbsp;</label>
             <input type="button" value="Nieuw product" id="nieuwproduct" onclick="window.location='NieuwProduct.html'" />
             <p>
             </p>
         </div>
     </div>
     <div>
-        <h1 id="error">
+        <h1 id="message">
         </h1>
     </div>
+    <p id="product" />
 </body>
 </html>
