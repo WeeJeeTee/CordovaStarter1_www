@@ -14,6 +14,7 @@
         // Cordova is ready
         //
         function onDeviceReady() {
+            alert("startWatch();");
             startWatch();
         }
 
@@ -30,7 +31,7 @@
         // Stop watching the compass
         //
         function stopWatch() {
-            alert('ik wacht');
+            alert('ik start stopWatch');
             alert('watchID: ' + watchID );
             if (watchID) {
                 navigator.compass.clearWatch(watchID);
