@@ -2,13 +2,14 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "nl.wjt.eersteCordova"
-        version   = "0.0.2">
+        version   = "0.0.3">
     <name>Cordova EEN</name>
 
     <description>
         Eerste Windows Phone app die x-platform is gemaakt met Cordova.
-		CRUD functionaliteit naar webapi geimplementeerd.	
-		26-10-2012 17:55		
+		CRUD functionaliteit naar webapi geimplementeerd.
+        Versie: met camera pagina
+		02-11-2012 12:00		
     </description>
 
     <author href="http://wjt.nl" email="wjt@wjt.nl">
@@ -17,12 +18,13 @@
 
     <feature name="http://api.phonegap.com/1.0/device" />
 
-    <preference name="phonegap-version" value="2.0.0" />
+    <preference name="phonegap-version" value="2.2.0" />
     <preference name="orientation"      value="default" />
     <preference name="target-device"    value="universal" />
     <preference name="fullscreen"       value="false" />
 
-    <icon src="Blue-Monster-icon.png" />
+	<feature name="http://api.phonegap.com/1.0/camera"/>
 
+    <icon src="Blue-Monster-icon.png" />
     <gap:splash src="thunder.png" />
 </widget>
