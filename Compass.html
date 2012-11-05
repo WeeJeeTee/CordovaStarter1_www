@@ -30,8 +30,8 @@
                 kompasImg = new Image();
                 kompasImg.src = "kompas.png";
 
-                // Update compass every 1 seconds
-                var options = { frequency: 1000 };
+                // Update compass every .2 seconds
+                var options = { frequency: 200 };
                 watchID = navigator.compass.watchHeading(onSuccess, onError, options);
             }
         }
