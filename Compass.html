@@ -49,9 +49,10 @@
         //
         function onSuccess(heading) {
             var element = document.getElementById('heading');
-            element.innerHTML = 'Heading: ' + heading.magneticHeading;
+            var richting = heading.magneticHeading
+            element.innerHTML = 'Heading: ' + richting;
 
-            setkompas(heading.mmagneticHeading);
+            setkompas(richting);
         }
 
         // onError: Failed to get the heading
