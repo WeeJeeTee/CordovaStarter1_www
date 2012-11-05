@@ -2,7 +2,7 @@
 <head>
     <title>Compass Example</title>
     <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
-<!--    <script type="text/javascript" charset="utf-8" src="cordova-1.7.0.js"></script>-->
+    <!--    <script type="text/javascript" charset="utf-8" src="cordova-1.7.0.js"></script>-->
     <script type="text/javascript" charset="utf-8">
 
         // The watch id references the current `watchHeading`
@@ -39,7 +39,6 @@
         // Stop watching the compass
         //
         function stopWatch() {
-            alert('watchID: ' + watchID);
             if (watchID) {
                 navigator.compass.clearWatch(watchID);
                 watchID = null;
@@ -67,9 +66,8 @@
             var surfaceContext = surface.getContext('2d');
 
             // Clear the canvas to White
-            surfaceContext.fillStyle = "rgb(255,255,255)";
+            surfaceContext.fillStyle = "rgb(155,205,250)";
             surfaceContext.fillRect(0, 0, surface.width, surface.height);
-            alert(0, 0, surface.width, surface.height);
             // Save the current context
             surfaceContext.save();
             // Translate to the center point of our image
@@ -79,7 +77,7 @@
             // Translate back to the top left of our image
             surfaceContext.translate(-kompasImg.width * 0.5, -kompasImg.height * 0.5);
             // Finally we draw the image
-            surfaceContext.drawImage(kompasImg, 0, 0);
+            surfaceContext.drawImage(kompasImg, 0, 0, 300, 300);
             // And restore the context ready for the next loop
             surfaceContext.restore();
 
@@ -151,7 +149,7 @@
         &nbsp;</label>
     <input onclick="window.location='LijstProduct.html';" type="button" value="Home" />
     <div>
-        <canvas id="kompasImgCanvas" width="600" height="600">
+        <canvas id="kompasImgCanvas" width="300" height="300">
             <p>Your browser doesn't support canvas.</p>
         </canvas>
     </div>
