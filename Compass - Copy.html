@@ -66,16 +66,16 @@
             var surfaceContext = surface.getContext('2d');
 
             // Clear the canvas to White
-            surfaceContext.fillStyle = "rgb(255,205,250)";
+            surfaceContext.fillStyle = "rgb(155,205,250)";
             surfaceContext.fillRect(0, 0, surface.width, surface.height);
             // Save the current context
             surfaceContext.save();
             // Translate to the center point of our image
-            //surfaceContext.translate(kompasImg.width * 0.25, kompasImg.height * 0.25);
+            surfaceContext.translate(kompasImg.width * 0.25, kompasImg.height * 0.25);
             // Perform the rotation
-            //surfaceContext.rotate(DegToRad(heading));
+            surfaceContext.rotate(DegToRad(heading));
             // Translate back to the top left of our image
-            //surfaceContext.translate(-kompasImg.width * 0.25, -kompasImg.height * 0.25);
+            surfaceContext.translate(-kompasImg.width * 0.25, -kompasImg.height * 0.25);
             // Finally we draw the image
             surfaceContext.drawImage(kompasImg, 0, 0, 300, 300);
             // And restore the context ready for the next loop
