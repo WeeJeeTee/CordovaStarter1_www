@@ -51,7 +51,7 @@
             var element = document.getElementById('heading');
             element.innerHTML = 'Heading: ' + heading.magneticHeading;
 
-            setkompas(90);
+            setkompas(-heading);
         }
 
         // onError: Failed to get the heading
@@ -71,11 +71,11 @@
             // Save the current context
             surfaceContext.save();
             // Translate to the center point of our image
-            surfaceContext.translate(kompasImg.width * 0.5, kompasImg.height * 0.5);
+            surfaceContext.translate(kompasImg.width * 0.25, kompasImg.height * 0.25);
             // Perform the rotation
             surfaceContext.rotate(DegToRad(heading));
             // Translate back to the top left of our image
-            surfaceContext.translate(-kompasImg.width * 0.5, -kompasImg.height * 0.5);
+            surfaceContext.translate(-kompasImg.width * 0.25, -kompasImg.height * 0.25);
             // Finally we draw the image
             surfaceContext.drawImage(kompasImg, 0, 0, 300, 300);
             // And restore the context ready for the next loop
