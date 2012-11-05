@@ -4,6 +4,8 @@
     <title>Nieuw Product</title>
     <link href="Site.css" rel="stylesheet" />
     <script src="jquery-1.7.1.min.js" type="text/javascript"></script>
+    <script type="text/javascript" charset="utf-8" src="cordova.js"></script>
+    <!--<script type="text/javascript" charset="utf-8" src="cordova-1.7.0.js"></script>-->
     <script type="text/javascript">
 
         var url = "http://localhost:53529/";
@@ -92,7 +94,7 @@
                 $.post(url + "api/products/",
                 { Name: nameNew, Category: categoryNew, Price: priceNew },
                 function (data) {
-                    window.location = 'index.html';
+                    window.location = 'LijstProduct.html';
                 });
             }
             else {
@@ -101,7 +103,7 @@
                     data: { Id: idLabel, Name: nameNew, Category: categoryNew, Price: priceNew },
                     type: "PUT",
                     success: function (data) {
-                        window.location = 'index.html';
+                        window.location = 'LijstProduct.html';
                     }
                 });
             }
@@ -146,7 +148,7 @@
         <br />
         <label class="label labeltekst">
             &nbsp;</label>
-        <input type="button" value="Cancel" onclick="window.location='index.html';" />
+        <input type="button" value="Cancel" onclick="window.location='LijstProduct.html';" />
         <input type="button" value="Save" onclick="save();" />
     </div>
     <div id="message">
