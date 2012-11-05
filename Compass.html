@@ -66,7 +66,7 @@
             var surfaceContext = surface.getContext('2d');
 
             // Clear the canvas to White
-            surfaceContext.fillStyle = "rgb(255,205,250)";
+            surfaceContext.fillStyle = "rgb(255,245,250)";
             surfaceContext.fillRect(0, 0, surface.width, surface.height);
 
             // Save the current context
@@ -75,7 +75,7 @@
             //surfaceContext.translate(happy.width * 0.25, happy.height * 0.25);
             // Perform the rotation
 //            surfaceContext.rotate(DegToRad(heading));
-            surfaceContext.rotate(DegToRad(0));
+            surfaceContext.rotate(DegToRad(30));
             // Translate back to the top left of our image
             //surfaceContext.translate(-happy.width * 0.25, -happy.height * 0.25);
             // Finally we draw the image
