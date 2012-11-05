@@ -70,7 +70,7 @@
             surfaceContext.fillRect(0, 0, surface.width, surface.height);
 
             // Save the current context
-            surfaceContext.save();
+            //surfaceContext.save();
             // Translate to the center point of our image
             //surfaceContext.translate(happy.width * 0.25, happy.height * 0.25);
             // Perform the rotation
@@ -79,9 +79,9 @@
             // Translate back to the top left of our image
             //surfaceContext.translate(-happy.width * 0.25, -happy.height * 0.25);
             // Finally we draw the image
-            surfaceContext.drawImage(happy, 0, 0, 300, 300);
+            surfaceContext.drawImage(kompasImg, 0, 0, 300, 300);
             // And restore the context ready for the next loop
-            surfaceContext.restore();
+            //surfaceContext.restore();
 
         }
 
