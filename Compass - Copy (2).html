@@ -18,7 +18,6 @@
         var yBreedte = 254;
         var yTranslatie = 152;
         var yOffset = 0;
-        var kompasnummer = 2;
 
         // Wait for Cordova to load
         //
@@ -93,31 +92,7 @@
             // And restore the context ready for the next loop
             surfaceContext.restore();
         }
-
-
-        function wissel() {
-            if (kompasnummer != 0) {
-                kompasnummer = 0;
-                kompasImg.src = 'kompas.png';
-                xBreedte = 300;
-                xTranslatie = 150;
-                xOffset = 0;
-                yBreedte = 300;
-                yTranslatie = 150;
-                yOffset = 0;
-            }
-            else {
-                kompasnummer = 2;
-                kompasImg.src = 'Kompas2.png';
-                xBreedte = 208;
-                xTranslatie = 149;
-                xOffset = 46;
-                yBreedte = 254;
-                yTranslatie = 152;
-                yOffset = 0;
-            }
-        }
-
+        
         function DegToRad(d) {
             // Converts degrees to radians
             return d * 0.0174532925199432957;
@@ -136,12 +111,7 @@
     <br />
     <label class="label labeltekst">
         &nbsp;</label>
-    <input type="button" class="knop" value="Wissel" id="menu" onclick="wissel" />
-    <br />
-    <br />
-    <label class="label labeltekst">
-        &nbsp;</label>
-    <input type="button" class="knop" value="Menu" id="Button1" onclick="window.location='index.html'" />
+    <input type="button" class="knop" value="Menu" id="menu" onclick="window.location='index.html'" />
     <div>
         <canvas id="kompasImgCanvas" width="300" height="300">
             <p>Your browser doesn't support canvas.</p>
