@@ -1,13 +1,43 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Redirect Page</title>
-    <script type="text/javascript">
-        window.location = "LijstProduct.html"
-    </script>
+    <title>Menu pagina</title>
+    <link href="Site.css" rel="stylesheet" />
 </head>
-<body>
-    <!--pagina om te voorkomen dat er een fout optreedt als er geen wifi verbinding is:
-connection error server android file index.html-->
+<body id="body">
+    <div class="main-content">
+        <br />
+        <br />
+        <label class="label labeltekst">
+            &nbsp;</label>
+        <input type="button" class="knop" value="Producten" id="producten" onclick="window.location='LijstProduct.html'" />
+        <br />
+        <br />
+        <label class="label labeltekst">
+            &nbsp;</label>
+        <input type="button" class="knop" value="Camera" id="camera" onclick="window.location='Camera.html'" />
+        <br />
+        <br />
+        <label class="label labeltekst">
+            &nbsp;</label>
+        <input type="button" class="knop" value="Compass" id="compass" onclick="window.location='Compass.html'" />
+        <br />
+        <br />
+        <label class="label labeltekst">
+            &nbsp;</label>
+        <input type="button" class="knop" value="Accelerometer" id="accelerometer" onclick="window.location='Accelerometer.html'" />
+        <br />
+        <br />
+        <label class="label labeltekst">
+            &nbsp;</label>
+        <input type="button" class="knop" value="Device" id="device" onclick="window.location='Device.html'" />
+        <br />
+        <br />
+        <label class="label labeltekst">
+            &nbsp;</label>
+        <input type="button" class="knop" value="Geolocation" id="geolocation" onclick="window.location='Geolocation.html'" />
+        <p>
+        </p>
+    </div>
 </body>
 </html>
